@@ -1,6 +1,8 @@
 # parents
 Что бы запустиь проект введите следующие команды:
 
+git checkout master
+
 docker-compose up -d --build
 
 docker-compose exec parents python manage.py migrate
