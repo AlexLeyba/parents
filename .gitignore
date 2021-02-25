@@ -8,5 +8,4 @@ postgres_data
 app/.coverage
 *.vscode
 *.devcontainer
-app/.env.dev
 app/.env.parents
