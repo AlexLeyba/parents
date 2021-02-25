@@ -1,0 +1,12 @@
+__pycache__
+env
+*.sqlite3
+postgres_data
+.idea
+*media
+*static
+app/.coverage
+*.vscode
+*.devcontainer
+app/.env.dev
+app/.env.parents

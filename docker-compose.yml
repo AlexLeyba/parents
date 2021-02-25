@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+
+  parents:
+    restart: always
+    container_name: parents_back
+    build: ./app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./app/.env.dev
+    depends_on:
+      - redis
+
+  celery:
+    build: ./app
+    command: celery worker --app=parents_back --loglevel=info --logfile=logs/celery.log
+    volumes:
+      - ./app:/usr/src/app
+    env_file:
+      - ./app/.env.dev
+    depends_on:
+      - parents
+      - redis
+
+  dashboard:
+    build: ./app
+    command:  flower -A parents_back --port=5555 --broker=redis://redis:6379/0
+    ports:
+      - 5555:5555
+    env_file:
+      - ./app/.env.dev
+    depends_on:
+      - parents
+      - redis
+      - celery
+
+  redis:
+    image: redis:5-alpine
+
+volumes:
+  postgres_data:

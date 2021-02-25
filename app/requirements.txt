@@ -1,0 +1,19 @@
+black
+Django
+djangorestframework == 3.11.0
+django-ckeditor
+django-cors-headers
+django-nested-inline
+flake8
+gunicorn
+isort
+Pillow
+pytest-cov
+psycopg2-binary
+pytest-django
+pytest
+drf-yasg == 1.17.1
+celery==4.4.1
+redis==3.4.1
+flower==0.9.3
+djoser==2.0.3
